@@ -23,7 +23,11 @@ Class ExchangeRateService implements ExchangeRateServiceInterface
 
     public function getExchangeRate(Currency $from, Currency $to): float
     {
+        static $rates = [];
         $fromTo = $from->getName().'_'.$to->getName();
+        if(isset($rates[$fromTo])){
+            return $rates[$fromTo];
+        }
         $queryParams = ['apiKey' => $this->apiKey, 'q' => $fromTo];
         $httpResponse = $this->guzzle->get($this->endpoint, ['query' => $queryParams]);
         if ($httpResponse->getStatusCode() != 200) {
@@ -31,6 +35,7 @@ Class ExchangeRateService implements ExchangeRateServiceInterface
         }
         $httpResponseBody = json_decode($httpResponse->getBody(), true);
         $exchangeRate = $httpResponseBody['results'][$fromTo]['val'];
+        $rates[$fromTo] = $exchangeRate;
 
         return $exchangeRate;
     }

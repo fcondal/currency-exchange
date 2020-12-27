@@ -43,7 +43,7 @@ Class MoneyAdderService implements MoneyAdderServiceInterface
         return $money;
     }
 
-    private function getAmount(int $originCurrencyId, Currency $destinationCurrency, $originAmount)
+    private function getAmount(int $originCurrencyId, Currency $destinationCurrency, float $originAmount)
     {
         $originCurrency = $this->currencyRepository->getCurrency($originCurrencyId);
         $exchangeRate = $this->exchangeRateService->getExchangeRate($originCurrency, $destinationCurrency);
