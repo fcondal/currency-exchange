@@ -1,0 +1,23 @@
+{
+    "name": "facundo/exchange",
+    "description": "Currency Exchange App allows to convert currencies and sum different amounts.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Facundo Condal",
+            "email": "facundocondal@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    },
+    "autoload": {
+        "classmap": [
+            "app/"
+        ]
+    }
+}
